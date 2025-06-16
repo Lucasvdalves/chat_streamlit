@@ -12,7 +12,7 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if not st.session_state.chat_history:
-    st.session_state.chat_history.append(("assistant", "Fala Campeão! Como posso te ajudar hoje?"))
+    st.session_state.chat_history.append(("assistant", "Olá, sou um assistente de vendas. Como posso ajudar você hoje?"))
 
 if st.sidebar.button("Reset chat"):
     reset_chat()
