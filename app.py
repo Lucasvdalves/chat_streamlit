@@ -7,17 +7,13 @@ api_key = get_secret("API_KEY")
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
-# Adiciona campo para selecionar o idioma
 language = st.sidebar.selectbox("Escolha o idioma / Choose the language:", ["Português", "English"])
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if not st.session_state.chat_history:
-    if language == "Português":
-        st.session_state.chat_history.append(("assistant", "Olá, sou um assistente de vendas. Como posso ajudar você hoje?"))
-    else:
-        st.session_state.chat_history.append(("assistant", "Hello, I am a sales assistant. How can I help you today?"))
+    st.session_state.chat_history.append(("assistant", "Fala Campeão! Como posso te ajudar hoje?"))
 
 if st.sidebar.button("Reset chat"):
     reset_chat()
