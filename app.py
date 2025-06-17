@@ -15,7 +15,7 @@ if "chat_history" not in st.session_state:
 
 if not st.session_state.chat_history:
     if language == "Português":
-        st.session_state.chat_history.append(("assistant", "Olá, sou um assistente de vendas que te auxilia a tratar objeções e a fazer grande negocios. Como posso ajudar você hoje?"))
+        st.session_state.chat_history.append(("assistant", "Olá, sou um assistente de vendas que te auxilia a tratar objeções e a fazer grandes negocios. Como posso ajudar você hoje?"))
     else:
         st.session_state.chat_history.append(("assistant", "Hi, I'm a sales assistant who helps you handle objections and close big deals. How can I help you today?"))
 
