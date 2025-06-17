@@ -7,13 +7,17 @@ api_key = get_secret("API_KEY")
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.0-flash")
 
+# Adiciona campo para selecionar o idioma
 language = st.sidebar.selectbox("Escolha o idioma / Choose the language:", ["Português", "English"])
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if not st.session_state.chat_history:
-    st.session_state.chat_history.append(("assistant", "Fala Campeão! Como posso te ajudar hoje?"))
+    if language == "Português":
+        st.session_state.chat_history.append(("assistant", "Olá, sou um assistente de vendas. Como posso ajudar você hoje?"))
+    else:
+        st.session_state.chat_history.append(("assistant", "Hello, I am a sales assistant. How can I help you today?"))
 
 if st.sidebar.button("Reset chat"):
     reset_chat()
@@ -29,19 +33,19 @@ if user_message:
     
     if language == "Português":
         system_prompt = """
-       Chat, você é um executivo de vendas altamente sênior e experiente. 
-       Seu papel é atuar de forma consultiva, ajudando a superar objeções e dificuldades no processo de fechamento de vendas, 
-       sempre com base nas informações fornecidas aqui. 
-       Responda de forma objetiva, clara e amigável, focando exclusivamente em questões relacionadas ao processo de vendas. 
-       Não responda perguntas que estejam fora deste contexto.
-       """
+        Chat, você é um executivo de vendas altamente sênior, 
+        e seu papel é ser consultivo e ajudar a lidar com 
+        objeções de vendas com base nos dados que recebe aqui. 
+        Você não deve responder a nenhuma outra pergunta fora de contexto, 
+        seja objetivo e amigável com suas respostas.
+        """
     else:
         system_prompt = """
-        Chat, you are a highly senior and experienced sales executive.
-        Your role is to act in a consultative manner, helping to overcome objections and difficulties in the sales closing process,
-        always based on the information provided here.
-        Respond objectively, clearly and friendly, focusing exclusively on issues related to the sales process.
-        Do not answer questions that are outside this context.
+        Chat, you are a highly senior sales executive,  
+        and your role is to be consultative and help deal with 
+        sales objections based on the data you receive here. 
+        You should not answer any other questions that are out of context, 
+        be objective and friendly with your answers.
         """
 
     full_input = f"{system_prompt}\n\nUser message:\n\"\"\"{user_message}\"\"\""
